@@ -8,9 +8,9 @@ A simple recommendation system based on users similarity and items similarity. I
   * [Similarity of Users](#similarity-of-users)
 
 ## What does it do?
-The actual project is the class Recommender that will only require a dictionary of dictionaries, in which the primary key can be an user, for example, and the secondary key can be an object that this user rated (this is shown in the picture below). The goal of the program is to try to analyze the behavior and similarities between users or items and generate the rating (or other feedback) this user would give.
+The actual project is the class Recommender that will only require a dictionary of dictionaries, in which the primary key can be an user, for example, and the secondary key can be an object that this user rated (this is shown in the picture below). The goal of the program is to analyze the behavior and similarities between users or items and generate the rating (or other feedback) this user would give.
 
-|Usuários/Filmes|Freddy vs Jason|The Bourne Ultimatum|Star Trek|The Terminator|Norbit|Star Wars|
+|  Users/Movies |Freddy vs Jason|The Bourne Ultimatum|Star Trek|The Terminator|Norbit|Star Wars|
 |     :---:     |     :---:     |        :---:       |  :---:  |     :---:    | :---:|  :---:  |
 |      Ana      |      2.5      |         3.5        |   3.0   |      3.5     | 2.5  |   3.0   |
 |     Marcos    |      3.0      |         3.5        |   1.5   |      5.0     | 3.5  |   3.0   |
