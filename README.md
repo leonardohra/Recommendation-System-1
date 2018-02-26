@@ -1,11 +1,14 @@
 # Recommendation System 1
-A simple recommendation system based on users similarity and items similarity. It was made using the knowledge of one of [Udemy's Recommendation System's course](https://www.udemy.com/inteligencia-artificial-sistemas-de-recomendacao-em-python/) 
+A simple recommendation system based on users similarity and items similarity. It was made using the knowledge of [one of Udemy's Recommendation System's course](https://www.udemy.com/inteligencia-artificial-sistemas-de-recomendacao-em-python/) 
 
 ## Table of Contents
 * [What does it do?](#what-does-it-do)
 * [Requirements](#requirements)
 * [How does it work?](#how-does-it-work)
   * [Similarity of Users](#similarity-of-users)
+  * [Similarity of Items](#similarity-of-items)
+* [Which one to use?](#which-one-to-use)
+* [Examples](#examples)
 
 ## What does it do?
 The actual project is the class Recommender that will only require a dictionary of dictionaries, in which the primary key can be an user, for example, and the secondary key can be an object that this user rated (this is shown in the picture below). The goal of the program is to analyze the behavior and similarities between users or items and generate the rating (or other feedback) this user would give.
@@ -63,7 +66,45 @@ The next step is to use this similarity as a weight for future ratings: if the o
 
 In this scenario, Pedro's rating predicted for Star Trek will be:
 
-(Ana's rating * Ana's similarity to Pedro + Marcos' rating * Marcos' similarity to Pedro + Claudia's rating * Claudia similarity to Pedro + Adriana's rating * Adriana's similarity to Pedro + Janaina's rating * Janaina's similarity to Pedro)/(Ana's similarity to Pedro + Marcos' similarity to Pedro + Claudia similarity to Pedro + Adriana's similarity to Pedro + Janaina's similarity to Pedro)
+> (Ana's rating * Ana's similarity to Pedro + Marcos' rating * Marcos' similarity to Pedro + Claudia's rating * Claudia similarity to Pedro + Adriana's rating * Adriana's similarity to Pedro + Janaina's rating * Janaina's similarity to Pedro)/(Ana's similarity to Pedro + Marcos' similarity to Pedro + Claudia similarity to Pedro + Adriana's similarity to Pedro + Janaina's similarity to Pedro)
+
+### Similarity of Items
+There's also the option to do the same thing with items inverting the base, so instead of "the user Ana gave the movie Freddy vs Jason the rating 2.5" it would be "the movie Freddy vs Jason received the rating 2.5 by the user Ana", as you can see in the table below. 
+
+|      Users/Movies    |  Ana  | Marcos | Pedro | Claudia | Adriano | Janaina | Leonardo |
+|         :---:        | :---: | :---:  | :---: |  :---:  |  :---:  |  :---:  |  :---:   |
+|    Freddy vs Jason   |  2.5  |  3.0   |  2.5  |         |   3.0   |   3.0   |          |
+| The Bourne Ultimatum |  3.5  |  3.5   |  3.0  |   3.5   |   4.0   |   4.0   |   4.5    |
+|       Star Trek      |  3.0  |  1.5   |       |   3.0   |   2.0   |   3.0   |          |
+|     The Terminator   |  3.5  |  5.0   |  3.5  |   4.0   |   3.0   |   5.0   |   4.0    |
+|         Norbit       |  2.5  |  3.5   |       |   2.5   |   2.0   |   3.5   |   1.0    |
+|       Star Wars      |  3.0  |  3.0   |  4.0  |   4.5   |   3.0   |   3.0   |          |
+
+If we were to apply the euclidean distance between the items (in this case movies) we would see which movies were rated similarly, if 2 movies are rated similarly the weight of the ratings of this movie is more important then others. So, for example, if we wanted to find out the rating Star Wars will receive from Leonardo, we first need to calculate the similarity to other movies (in the table below I'll just show the example for one movie)
 
 
-## [Still working on this readme]
+|      Users/Movies    |  Ana  | Marcos | Pedro | Claudia | Adriano | Janaina | Leonardo |  Euc  |
+|         :---:        | :---: | :---:  | :---: |  :---:  |  :---:  |  :---:  |  :---:   | :---: |
+|         Norbit       |  2.5  |  3.5   |       |   2.5   |   2.0   |   3.5   |   1.0    |       |
+|       Star Wars      |  3.0  |  3.0   |  4.0  |   4.5   |   3.0   |   3.0   |          |       |
+|           d²         |  0.25 |  0.25  |   -   |   4.0   |   1.0   |   0.25  |    -     |  0.14 |
+
+This means that Norbit is rated way different than Star Wars, so its rating isn't going to matter that much. After calculating all the similarities we can take the weighted average mean of the other movies ratings (that Leonardo rated) with their similarity to the movie being rated to figure out how much would it be:
+
+> (The Bourne Ultimatum' rating * The Bourne Ultimatum' similarity to Star Wars + The Terminator's rating * The Terminator similarity to Star Wars + Norbit's rating * Norbit's similarity to Star Wars)/(The Bourne Ultimatum' similarity to Star Wars + The Terminator similarity to Star Wars + Norbit's similarity to Star Wars)
+
+Since the user only rated The Bourne Ultimatum, The Terminator and Norbit, those were the only ones that were taken in consideration. So the idea is "If he rated high for a movie that is similar (in ratings) to the movie being evaluated, he'll rate this movie high as well".
+
+## Which one to use?
+
+The user similarity approach is a good choice when you have enough information about an user, since you need a lot of ratings (or any other feedback) to define an accurate similarity to other people, but if the user is new to the database, you won't have this much information, so you can't predict anything for him in the start.
+
+On the other hand the item similarity is a good option if you have a lot of feedback about the items, since it can calculate the similarity between each item and an item the user gave a positive feedback, to suggest him the one most similar, but if you have, for example, an e-commerce website, where it's extremally difficult that a great percentage of the users will buy every item, to give the feedback, the similarity is not going to be properly defined, again because of the lack of information. One way to avoid this is categorizing items, probably a great percentage of a specific group of users will buy a set of items (the category book will have a great feedback from a group of users, the category eletronics will have a great feedback from another group of users, and etc).
+
+## Examples
+
+There are 2 demo projects: example_base.py and movielens_rec.py
+
+* example_base.py: The one used as example in this readme, it's a small base, and it's great to show a little bit of the difference between the two approaches. Note that both approached have a nice result, because most of the users rated most of the movies.
+
+* movielens_rec.py: Movielens is a [public dataset](https://grouplens.org/datasets/movielens/) that has movies' ratings for a lot of users. This dataset shows how item similarity might not be a good approach without any other thing to avoid the lack of feedback, since the *average* quantity of ratings/user is 105.71 (yeah I made it calculate to be sure) movies rated out of 1682 as opposing to 5 movies rated out of 6 in the previous dataset.
