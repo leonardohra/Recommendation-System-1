@@ -33,9 +33,9 @@ There were implemented 2 approaches for predicting results: using similarity of 
 To calculate how close the ratings of the users are, for each user the similarity will be the euclidean distance between all their ratings. 
 \
 The formula for the [Euclidean Distance](https://en.wikipedia.org/wiki/Euclidean_distance) is the following:
-\
+
 ![euclidean distance formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/dc0281a964ec758cca02ab9ef91a7f54ac00d4b7)
-\
+
 In python (being p1 the first point, p2 second point):
 ```
 sum = 0
