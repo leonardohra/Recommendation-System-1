@@ -4,8 +4,8 @@ A simple recommendation system based on users similarity and items similarity. I
 ## Table of Contents
 * [What does it do?](#what-does-it-do)
 * [Requirements](#requirements)
-* [How does it work?](how-does-it-work)
-  * [Similarity of Users](similarity-of-users)
+* [How does it work?](#how-does-it-work)
+  * [Similarity of Users](#similarity-of-users)
 
 ## What does it do?
 The actual project is the class Recommender that will only require a dictionary of dictionaries, in which the primary key can be an user, for example, and the secondary key can be an object that this user rated (this is shown in the picture below). The goal of the program is to try to analyze the behavior and similarities between users or items and generate the rating (or other feedback) this user would give.
