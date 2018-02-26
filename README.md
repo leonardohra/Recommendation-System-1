@@ -31,12 +31,13 @@ There were implemented 2 approaches for predicting results: using similarity of 
 
 ### Similarity of Users
 To calculate how close the ratings of the users are, for each user the similarity will be the euclidean distance between all their ratings. 
-\
+
 The formula for the [Euclidean Distance](https://en.wikipedia.org/wiki/Euclidean_distance) is the following:
 
 ![euclidean distance formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/dc0281a964ec758cca02ab9ef91a7f54ac00d4b7)
 
 In python (being p1 the first point, p2 second point):
+
 ```
 sum = 0
 
@@ -45,7 +46,7 @@ for i in range(len(p1)):
 
 result = math.sqrt(sum)
 ```
-\
+
 So, for example, if I want the similarity between Ana and Pedro, this would be:
 
 |Usuários/Filmes|Freddy vs Jason|The Bourne Ultimatum|Star Trek|The Terminator|Norbit|Star Wars| Euc |
@@ -61,7 +62,7 @@ The next step is to use this similarity as a weight for future ratings: if the o
 
 
 In this scenario, Pedro's rating predicted for Star Trek will be:
-\
+
 (Ana's rating * Ana's similarity to Pedro + Marcos' rating * Marcos' similarity to Pedro + Claudia's rating * Claudia similarity to Pedro + Adriana's rating * Adriana's similarity to Pedro + Janaina's rating * Janaina's similarity to Pedro)/(Ana's similarity to Pedro + Marcos' similarity to Pedro + Claudia similarity to Pedro + Adriana's similarity to Pedro + Janaina's similarity to Pedro)
 
 
