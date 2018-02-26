@@ -28,7 +28,7 @@ So the goal is to correlate users that rate the same for the same movies and use
 
 ## How does it work?
 There were implemented 2 approaches for predicting results: using similarity of users (Ana, Marcos, Pedro, for example) or using similarity of items (Freddy vs Jason, The Bourne Ultimatum, for example).
-\
+
 ### Similarity of Users
 To calculate how close the ratings of the users are, for each user the similarity will be the euclidean distance between all their ratings. 
 \
@@ -55,12 +55,14 @@ So, for example, if I want the similarity between Ana and Pedro, this would be:
 |       d²      |      0.0      |         0.5        |    -    |      0.0     |  -   |   1.0   |1.22 |
 
 The Euclidean distance is 1.22, but this doesn't tell much, so we will need to get this to a more intuitive number. We want the number of the similarity to get closer to 1 when the they are very close (euclidean is near 0), and to get as close to 0 as possible when the distance is bigger, so we can use the following formula: similarity = 1/(1 + euclidean). If the euclidean is 0 (they are very close), the similarity is 1, if the euclidean is big (they are very distant), the similarity gets closer to 0, so for the previous scenario, the similarity between Pedro and Ana is 0.45 (1/2.22).
-\
+
+
 The next step is to use this similarity as a weight for future ratings: if the other user is more similar to the user (Let's say Pedro, for example) we are evaluating now, his ratings are more important, since when it comes around ratings he's closer than others. Then with the similarities of other users to Pedro, we need to calculate the rating every other user gave to the movie we want to find out multiplied by the value of similarity, and taking an weighted average mean of this.
-\
+
+
 In this scenario, Pedro's rating predicted for Star Trek will be:
 \
 (Ana's rating * Ana's similarity to Pedro + Marcos' rating * Marcos' similarity to Pedro + Claudia's rating * Claudia similarity to Pedro + Adriana's rating * Adriana's similarity to Pedro + Janaina's rating * Janaina's similarity to Pedro)/(Ana's similarity to Pedro + Marcos' similarity to Pedro + Claudia similarity to Pedro + Adriana's similarity to Pedro + Janaina's similarity to Pedro)
-\
+
 
 ## [Still working on this readme]
