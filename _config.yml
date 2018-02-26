@@ -1,2 +1,4 @@
-theme: jekyll-theme-tactile
+title: Recommendation System
+description: A simple recommendation system based on users similarity and items similarity.
 show_downloads: true
+theme: jekyll-theme-tactile
