@@ -20,7 +20,7 @@ The actual project is the class Recommender that will only require a dictionary 
 |    Janaina    |      3.0      |         4.0        |   3.0   |      5.0     | 3.5  |   3.0   |
 |    Leonardo   |               |         4.5        |         |      4.0     | 1.0  |         |
 
-With this information it's possible to correlate users that rate the same for the same movies and use them to predict the rating of an user for a movie that he didn't watch.
+With the data from the table, for example, it's possible to correlate users that rate the same for the same movies and use them to predict the rating of an user for a movie that he didn't watch.
 
 ## Requirements
 
