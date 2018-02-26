@@ -27,7 +27,7 @@ So the goal is to correlate users that rate the same for the same movies and use
 * Python 3.6 
 
 ## How does it work?
-There were implemented 2 approaches for predicting results: using similarity of users (Ana, Marcos, Pedro, for example) or using similarity of items (Freddy vs Jason, The Bourne Ultimatum, for example).
+2 approaches were implemented for predicting results: using similarity of users (Ana, Marcos, Pedro, for example) or using similarity of items (Freddy vs Jason, The Bourne Ultimatum, for example).
 
 ### Similarity of Users
 To calculate how close the ratings of the users are, for each user the similarity will be the euclidean distance between all their ratings. 
