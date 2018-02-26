@@ -1,6 +1,9 @@
 # Recommendation System 1
 A simple recommendation system based on users similarity and items similarity. It was made using the knowledge of one of [Udemy's Recommendation System's course](https://www.udemy.com/inteligencia-artificial-sistemas-de-recomendacao-em-python/) 
 
+## Table of Contents
+[What does it do?](#wdid)
+
 ## What does it do?
 The actual project is the class Recommender that will only require a dictionary of dictionaries, in which the primary key can be an user, for example, and the secondary key can be an object that this user rated (this is shown in the picture below). The goal of the program is to try to analyze the behavior and similarities between users or items and generate the rating (or other feedback) this user would give.
 
@@ -15,5 +18,15 @@ The actual project is the class Recommender that will only require a dictionary 
 |    Leonardo   |               |         4.5        |         |      4.0     | 1.0  |         |
 
 So the goal is to correlate users that rate the same for the same movies and use them to predict the rating of an user for a movie that he didn't watch.
+
+## Requirements
+
+* Python 3.6 
+
+## How does it work?
+There were implemented 2 approaches for predicting results: using similarity of users (Ana, Marcos, Pedro, for example) or using similarity of items (Freddy vs Jason, The Bourne Ultimatum, for example).
+\
+### Similarity of Users
+To calculate how close the ratings of the 
 
 ## [Still working on this readme]
